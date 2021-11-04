@@ -1,17 +1,27 @@
+import css from './style.css';
+import { createDom } from './dom';
+const API = '746149ecb44c6b9cbab720bddd6eeee5';
 const container = document.getElementById('container');
-
-const form = document.createElement('form');
-const searchInput = document.createElement('input');
-const searchButton = document.createElement('button');
-searchButton.setAttribute('type', 'button');
-form.appendChild(searchInput);
-form.appendChild(searchButton);
-container.appendChild(form);
+createDom();
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
 
 async function getWeatherData(city) {
   try {
     const response = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=746149ecb44c6b9cbab720bddd6eeee5`,
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&exclude=daily&APPID=${API}&units=metric`,
+      { mode: 'cors' }
+    );
+    const weatherData = await response.json();
+    return weatherData;
+  } catch {
+    alert('ERROR');
+  }
+}
+async function getOnecallWeatherData(lat, lon) {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${API}`,
       { mode: 'cors' }
     );
     const weatherData = await response.json();
@@ -21,23 +31,29 @@ async function getWeatherData(city) {
   }
 }
 class Weather {
-  constructor(feelsLike, humidity, temp, city) {
-    this.feelsLike = feelsLike;
-    this.humidity = humidity;
-    this.temp = temp;
-    this.city = city;
+  constructor(currentTemp, currentHumidity, currentTime) {
+    this.currentTemp = currentTemp;
+    this.currentHumidity = currentHumidity;
+    this.currentTime = currentTime;
   }
 }
 async function processWeatherData(city) {
-  const weatherData = await getWeatherData(city);
-
-  const weather = new Weather(
-    weatherData.main.feels_like,
-    weatherData.main.humidity,
-    weatherData.main.temp,
-    weatherData.name
-  );
-  console.log(weather);
+  try {
+    const weatherData = await getWeatherData(city);
+    const onecallRequest = await getOnecallWeatherData(
+      weatherData.coord.lat,
+      weatherData.coord.lon
+    );
+    console.log(onecallRequest);
+    const weather = new Weather(
+      onecallRequest.current.temp,
+      onecallRequest.current.humidity,
+      onecallRequest.current.dt
+    );
+    console.log(weather);
+  } catch {
+    console.log('processWeatherData Error!');
+  }
 }
 searchButton.addEventListener('click', () => {
   processWeatherData(searchInput.value);
