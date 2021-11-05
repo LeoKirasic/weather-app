@@ -43,6 +43,7 @@ function createDom(data) {
   for (let i = 0; i <= 24; i++) {
     const hourlyWeatherCard = document.createElement('li');
     hourlyWeatherCard.classList = 'hourly-weather-card';
+    hourlyWeatherCard.dataset.index = i;
     hourlyWeatherCard.textContent = i;
     hourlyWeatherContainer.appendChild(hourlyWeatherCard);
   }
