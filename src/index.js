@@ -40,6 +40,7 @@ class Weather {
 async function processWeatherData(city) {
   try {
     const weatherData = await getWeatherData(city);
+    console.log(weatherData);
     const onecallRequest = await getOnecallWeatherData(
       weatherData.coord.lat,
       weatherData.coord.lon
@@ -50,11 +51,25 @@ async function processWeatherData(city) {
       onecallRequest.current.humidity,
       onecallRequest.current.dt
     );
+    setCurrentWeather(weather, weatherData.name);
     console.log(weather);
   } catch {
     console.log('processWeatherData Error!');
   }
 }
+
+function setCurrentWeather(weatherTemperature, currentCity) {
+  const city = document.getElementById('city');
+  const currentTemperature = document.getElementById('current-temperature');
+  const currentWeatherContainer = document.getElementById(
+    'current-weather-container'
+  );
+  city.textContent = currentCity;
+  currentTemperature.textContent = weatherTemperature.currentTemp;
+  currentWeatherContainer.appendChild(city);
+  currentWeatherContainer.appendChild(currentTemperature);
+}
+
 searchButton.addEventListener('click', () => {
   processWeatherData(searchInput.value);
 });
