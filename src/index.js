@@ -31,11 +31,12 @@ async function getOnecallWeatherData(lat, lon) {
   }
 }
 class Weather {
-  constructor(currentTemp, currentHumidity, currentTime, hourly) {
+  constructor(currentTemp, currentHumidity, currentTime, hourly, daily) {
     this.currentTemp = currentTemp;
     this.currentHumidity = currentHumidity;
     this.currentTime = currentTime;
     this.hourly = hourly;
+    this.daily = daily;
   }
 }
 async function processWeatherData(city) {
@@ -51,10 +52,12 @@ async function processWeatherData(city) {
       onecallRequest.current.temp,
       onecallRequest.current.humidity,
       onecallRequest.current.dt,
-      onecallRequest.hourly
+      onecallRequest.hourly,
+      onecallRequest.daily
     );
     setCurrentWeather(weather, weatherData.name);
     setHourlyWeather(weather);
+    setDailyWeather(weather);
     console.log(weather);
   } catch {
     console.log('processWeatherData Error!');
@@ -85,6 +88,14 @@ function setHourlyWeather(weather) {
   let counter = 0;
   hourlyWeatherCards.forEach((element) => {
     element.textContent = weather.hourly[counter].temp;
+    counter++;
+  });
+}
+function setDailyWeather(weather) {
+  const dailyWeatherCards = document.querySelectorAll('.daily-weather-card');
+  let counter = 0;
+  dailyWeatherCards.forEach((element) => {
+    element.textContent = weather.daily[counter].temp.day;
     counter++;
   });
 }
