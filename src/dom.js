@@ -43,8 +43,23 @@ function createDom(data) {
   for (let i = 0; i <= 24; i++) {
     const hourlyWeatherCard = document.createElement('li');
     hourlyWeatherCard.classList = 'hourly-weather-card';
-    hourlyWeatherCard.dataset.index = i;
-    hourlyWeatherCard.textContent = i;
+    
+    const hourlyWeatherTime = document.createElement('div');
+    hourlyWeatherTime.classList = 'hourly-weather-time';
+    hourlyWeatherCard.appendChild(hourlyWeatherTime);
+
+    const hourlyWeatherTemperature = document.createElement('div');
+    hourlyWeatherTemperature.classList = 'hourly-weather-temperature';
+    hourlyWeatherCard.appendChild(hourlyWeatherTemperature);
+
+    const hourlyWeatherIcon = document.createElement('div');
+    hourlyWeatherIcon.classList = 'hourly-weather-icon';
+    hourlyWeatherCard.appendChild(hourlyWeatherIcon);
+    
+    const hourlyWeatherHumidity = document.createElement('div');
+    hourlyWeatherHumidity.classList = 'hourly-weather-humidity';
+    hourlyWeatherCard.appendChild(hourlyWeatherHumidity);
+
     hourlyWeatherContainer.appendChild(hourlyWeatherCard);
   }
   container.appendChild(hourlyWeatherContainer);

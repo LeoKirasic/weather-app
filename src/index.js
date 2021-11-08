@@ -56,7 +56,8 @@ async function processWeatherData(city) {
       onecallRequest.daily
     );
     setCurrentWeather(weather, weatherData.name);
-    setHourlyWeather(weather);
+    setHourlyWeatherTemperature(weather);
+    setHourlyWeatherTime(weather);
     setDailyWeather(weather);
     console.log(weather);
   } catch {
@@ -80,17 +81,34 @@ searchButton.addEventListener('click', () => {
   processWeatherData(searchInput.value);
 });
 
-function setHourlyWeather(weather) {
-  const hourlyWeatherContainer = document.getElementById(
-    'hourly-weather-container'
-  );
-  const hourlyWeatherCards = document.querySelectorAll('.hourly-weather-card');
+
+function setHourlyWeatherTemperature(weather) {
   let counter = 0;
-  hourlyWeatherCards.forEach((element) => {
+ 
+  const hourlyWeatherTemperature = document.querySelectorAll('.hourly-weather-temperature');
+  hourlyWeatherTemperature.forEach((element) => {
     element.textContent = weather.hourly[counter].temp;
     counter++;
   });
 }
+
+function setHourlyWeatherTime(weather) {
+  let counter = 0;
+ 
+  const hourlyWeatherTime = document.querySelectorAll('.hourly-weather-time');
+  hourlyWeatherTime.forEach((element) => {
+    element.textContent = convertUnixTime(weather.hourly[counter].dt)
+
+    counter++;
+  });
+}
+
+function convertUnixTime(time) {
+let unixTime = time;
+let date = new Date(unixTime * 1000);
+return date.getHours();
+}
+
 function setDailyWeather(weather) {
   const dailyWeatherCards = document.querySelectorAll('.daily-weather-card');
   let counter = 0;
@@ -99,3 +117,4 @@ function setDailyWeather(weather) {
     counter++;
   });
 }
+
