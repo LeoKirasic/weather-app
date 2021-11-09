@@ -59,6 +59,7 @@ async function processWeatherData(city) {
     setHourlyWeatherTemperature(weather);
     setHourlyWeatherTime(weather);
     setHourlyWeatherIcon(weather);
+    setHourlyWeatherHumidity(weather);
     setDailyWeather(weather);
     console.log(weather);
   } catch {
@@ -115,7 +116,16 @@ function setHourlyWeatherIcon(weather) {
     counter++;
   })
 }
+function setHourlyWeatherHumidity(weather) {
+  let counter = 0;
 
+  const hourlyWeatherHumidity = document.querySelectorAll('.hourly-weather-humidity');
+  hourlyWeatherHumidity.forEach((element) => {
+
+    element.textContent = weather.hourly[counter].humidity + '%';
+    counter++;
+  })
+}
 function convertUnixTime(time) {
 let unixTime = time;
 let date = new Date(unixTime * 1000);
