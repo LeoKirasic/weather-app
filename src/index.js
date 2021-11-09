@@ -119,7 +119,7 @@ function setHourlyWeatherIcon(weather) {
 function convertUnixTime(time) {
 let unixTime = time;
 let date = new Date(unixTime * 1000);
-return date.getHours();
+return date.toLocaleString('en-US', { hour: 'numeric', hour12: true })
 }
 
 function setDailyWeather(weather) {
