@@ -6,6 +6,13 @@ createDom();
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
 
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    searchButton.click();
+  }
+});
+
 async function getWeatherData(city) {
   try {
     const response = await fetch(
