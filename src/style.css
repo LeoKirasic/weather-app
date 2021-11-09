@@ -31,8 +31,19 @@ ul {
   display: flex;
   align-items: center;
   flex-direction: column;
+  min-width: 30em;
+  height: 30em;
 }
 li {
   list-style: none;
   padding: 1em;
+}
+.daily-weather-card {
+  display: flex;
+  border: 1px solid black;
+}
+.daily-weather-item {
+  display: flex;
+  margin: 0em 2em 0em 2em;
+  width: 2em;
 }

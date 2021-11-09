@@ -73,18 +73,22 @@ function createDom(data) {
 
     const dailyWeatherDay = document.createElement('div');
     dailyWeatherDay.classList = 'daily-weather-day';
+    dailyWeatherDay.classList.add('daily-weather-item');
     dailyWeatherCard.appendChild(dailyWeatherDay);
 
     const dailyWeatherHumidity = document.createElement('div');
     dailyWeatherHumidity.classList = 'daily-weather-humidity';
+    dailyWeatherHumidity.classList.add('daily-weather-item');
     dailyWeatherCard.appendChild(dailyWeatherHumidity);
 
     const dailyWeatherIcon = document.createElement('img');
     dailyWeatherIcon.classList = 'daily-weather-icon';
+    dailyWeatherIcon.classList.add('daily-weather-item');
     dailyWeatherCard.appendChild(dailyWeatherIcon);
 
     const dailyWeatherTemperature = document.createElement('div');
     dailyWeatherTemperature.classList = 'daily-weather-temperature';
+    dailyWeatherTemperature.classList.add('daily-weather-item');
     dailyWeatherCard.appendChild(dailyWeatherTemperature);
 
     dailyWeatherContainer.appendChild(dailyWeatherCard);
