@@ -16,7 +16,7 @@ searchInput.addEventListener('keydown', (e) => {
 async function getWeatherData(city) {
   try {
     const response = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city}&exclude=daily&APPID=${API}&units=metric`,
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&exclude=daily&APPID=${API}&units=metric`,
       { mode: 'cors' }
     );
     const weatherData = await response.json();
@@ -123,7 +123,7 @@ function setHourlyWeatherIcon(weather) {
   const hourlyWeatherIcon = document.querySelectorAll('.hourly-weather-icon');
   hourlyWeatherIcon.forEach((element) => {
     const icon = weather.hourly[counter].weather[0].icon;
-    element.src = `http://openweathermap.org/img/wn/${icon}.png`;
+    element.src = `https://openweathermap.org/img/wn/${icon}.png`;
     counter++;
   });
 }
@@ -175,7 +175,7 @@ function setDailyWeatherIcon(weather) {
   let counter = 0;
   dailyWeatherIcon.forEach((element) => {
     const icon = weather.daily[counter].weather[0].icon;
-    element.src = `http://openweathermap.org/img/wn/${icon}.png`;
+    element.src = `https://openweathermap.org/img/wn/${icon}.png`;
     counter++;
   });
 }

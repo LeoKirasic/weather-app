@@ -15,7 +15,7 @@
 }
 #hourly-weather-container {
   display: flex;
-  overflow: auto;
+  overflow: scroll;
   white-space: nowrap;
 }
 .hourly-weather-card {
