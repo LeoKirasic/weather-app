@@ -43,7 +43,7 @@ function createDom(data) {
   for (let i = 0; i <= 24; i++) {
     const hourlyWeatherCard = document.createElement('li');
     hourlyWeatherCard.classList = 'hourly-weather-card';
-    
+
     const hourlyWeatherTime = document.createElement('div');
     hourlyWeatherTime.classList = 'hourly-weather-time';
     hourlyWeatherCard.appendChild(hourlyWeatherTime);
@@ -55,7 +55,7 @@ function createDom(data) {
     const hourlyWeatherIcon = document.createElement('img');
     hourlyWeatherIcon.classList = 'hourly-weather-icon';
     hourlyWeatherCard.appendChild(hourlyWeatherIcon);
-    
+
     const hourlyWeatherHumidity = document.createElement('div');
     hourlyWeatherHumidity.classList = 'hourly-weather-humidity';
     hourlyWeatherCard.appendChild(hourlyWeatherHumidity);
@@ -67,10 +67,26 @@ function createDom(data) {
   const dailyWeatherContainer = document.createElement('ul');
   dailyWeatherContainer.id = 'daily-weather-container';
 
-  for (let i = 0; i <= 7; i++) {
+  for (let i = 0; i < 7; i++) {
     const dailyWeatherCard = document.createElement('li');
     dailyWeatherCard.classList = 'daily-weather-card';
-    dailyWeatherCard.textContent = i;
+
+    const dailyWeatherDay = document.createElement('div');
+    dailyWeatherDay.classList = 'daily-weather-day';
+    dailyWeatherCard.appendChild(dailyWeatherDay);
+
+    const dailyWeatherHumidity = document.createElement('div');
+    dailyWeatherHumidity.classList = 'daily-weather-humidity';
+    dailyWeatherCard.appendChild(dailyWeatherHumidity);
+
+    const dailyWeatherIcon = document.createElement('img');
+    dailyWeatherIcon.classList = 'daily-weather-icon';
+    dailyWeatherCard.appendChild(dailyWeatherIcon);
+
+    const dailyWeatherTemperature = document.createElement('div');
+    dailyWeatherTemperature.classList = 'daily-weather-temperature';
+    dailyWeatherCard.appendChild(dailyWeatherTemperature);
+
     dailyWeatherContainer.appendChild(dailyWeatherCard);
   }
   container.appendChild(dailyWeatherContainer);

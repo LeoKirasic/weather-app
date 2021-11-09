@@ -60,7 +60,10 @@ async function processWeatherData(city) {
     setHourlyWeatherTime(weather);
     setHourlyWeatherIcon(weather);
     setHourlyWeatherHumidity(weather);
-    setDailyWeather(weather);
+    setDailyWeatherTemperature(weather);
+    setDailyWeatherDay(weather);
+    setDailyWeatherHumidity(weather);
+    setDailyWeatherIcon(weather);
     console.log(weather);
   } catch {
     console.log('processWeatherData Error!');
@@ -83,11 +86,12 @@ searchButton.addEventListener('click', () => {
   processWeatherData(searchInput.value);
 });
 
-
 function setHourlyWeatherTemperature(weather) {
   let counter = 0;
- 
-  const hourlyWeatherTemperature = document.querySelectorAll('.hourly-weather-temperature');
+
+  const hourlyWeatherTemperature = document.querySelectorAll(
+    '.hourly-weather-temperature'
+  );
   hourlyWeatherTemperature.forEach((element) => {
     element.textContent = weather.hourly[counter].temp;
     counter++;
@@ -96,10 +100,10 @@ function setHourlyWeatherTemperature(weather) {
 
 function setHourlyWeatherTime(weather) {
   let counter = 0;
- 
+
   const hourlyWeatherTime = document.querySelectorAll('.hourly-weather-time');
   hourlyWeatherTime.forEach((element) => {
-    element.textContent = convertUnixTime(weather.hourly[counter].dt)
+    element.textContent = convertUnixTime(weather.hourly[counter].dt);
 
     counter++;
   });
@@ -110,34 +114,73 @@ function setHourlyWeatherIcon(weather) {
 
   const hourlyWeatherIcon = document.querySelectorAll('.hourly-weather-icon');
   hourlyWeatherIcon.forEach((element) => {
-
-    let icon = weather.hourly[counter].weather[0].icon;
+    const icon = weather.hourly[counter].weather[0].icon;
     element.src = `http://openweathermap.org/img/wn/${icon}.png`;
     counter++;
-  })
+  });
 }
 function setHourlyWeatherHumidity(weather) {
   let counter = 0;
 
-  const hourlyWeatherHumidity = document.querySelectorAll('.hourly-weather-humidity');
+  const hourlyWeatherHumidity = document.querySelectorAll(
+    '.hourly-weather-humidity'
+  );
   hourlyWeatherHumidity.forEach((element) => {
-
     element.textContent = weather.hourly[counter].humidity + '%';
     counter++;
-  })
+  });
 }
 function convertUnixTime(time) {
-let unixTime = time;
-let date = new Date(unixTime * 1000);
-return date.toLocaleString('en-US', { hour: 'numeric', hour12: true })
+  const unixTime = time;
+  const date = new Date(unixTime * 1000);
+  return date.toLocaleString('en-US', { hour: 'numeric', hour12: true });
+}
+function convertUnixDate(time) {
+  const unixTime = time;
+  const date = new Date(unixTime * 1000);
+  const options = { weekday: 'long' };
+  return new Intl.DateTimeFormat('en-US', options).format(date);
 }
 
-function setDailyWeather(weather) {
-  const dailyWeatherCards = document.querySelectorAll('.daily-weather-card');
+function setDailyWeatherDay(weather) {
+  const dailyWeatherDay = document.querySelectorAll('.daily-weather-day');
   let counter = 0;
-  dailyWeatherCards.forEach((element) => {
+  dailyWeatherDay.forEach((element) => {
+    element.textContent = convertUnixDate(weather.daily[counter].dt);
+    counter++;
+  });
+}
+
+function setDailyWeatherHumidity(weather) {
+  const dailyWeatherHumidity = document.querySelectorAll(
+    '.daily-weather-humidity'
+  );
+  let counter = 0;
+  dailyWeatherHumidity.forEach((element) => {
+    element.textContent = weather.daily[counter].humidity + '%';
+    counter++;
+  });
+}
+
+function setDailyWeatherIcon(weather) {
+  const dailyWeatherIcon = document.querySelectorAll('.daily-weather-icon');
+  let counter = 0;
+  dailyWeatherIcon.forEach((element) => {
+    const icon = weather.daily[counter].weather[0].icon;
+    element.src = `http://openweathermap.org/img/wn/${icon}.png`;
+    counter++;
+  });
+}
+
+function setDailyWeatherTemperature(weather) {
+  const dailyWeatherTemperature = document.querySelectorAll(
+    '.daily-weather-temperature'
+  );
+  let counter = 0;
+  dailyWeatherTemperature.forEach((element) => {
     element.textContent = weather.daily[counter].temp.day;
     counter++;
   });
 }
 
+processWeatherData('London');
