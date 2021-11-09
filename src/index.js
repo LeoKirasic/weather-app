@@ -21,7 +21,7 @@ async function getWeatherData(city) {
 async function getOnecallWeatherData(lat, lon) {
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${API}`,
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${API}`,
       { mode: 'cors' }
     );
     const weatherData = await response.json();
@@ -77,7 +77,8 @@ function setCurrentWeather(weatherTemperature, currentCity) {
     'current-weather-container'
   );
   city.textContent = currentCity;
-  currentTemperature.textContent = weatherTemperature.currentTemp;
+  currentTemperature.textContent =
+    Math.round(weatherTemperature.currentTemp) + '°';
   currentWeatherContainer.appendChild(city);
   currentWeatherContainer.appendChild(currentTemperature);
 }
@@ -93,7 +94,7 @@ function setHourlyWeatherTemperature(weather) {
     '.hourly-weather-temperature'
   );
   hourlyWeatherTemperature.forEach((element) => {
-    element.textContent = weather.hourly[counter].temp;
+    element.textContent = Math.round(weather.hourly[counter].temp) + '°';
     counter++;
   });
 }
@@ -178,7 +179,7 @@ function setDailyWeatherTemperature(weather) {
   );
   let counter = 0;
   dailyWeatherTemperature.forEach((element) => {
-    element.textContent = weather.daily[counter].temp.day;
+    element.textContent = Math.round(weather.daily[counter].temp.day) + '°';
     counter++;
   });
 }

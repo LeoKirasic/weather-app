@@ -14,6 +14,7 @@
   margin-top: 5em;
 }
 #hourly-weather-container {
+  display: flex;
   overflow: auto;
   white-space: nowrap;
 }
