@@ -52,7 +52,7 @@ function createDom(data) {
     hourlyWeatherTemperature.classList = 'hourly-weather-temperature';
     hourlyWeatherCard.appendChild(hourlyWeatherTemperature);
 
-    const hourlyWeatherIcon = document.createElement('div');
+    const hourlyWeatherIcon = document.createElement('img');
     hourlyWeatherIcon.classList = 'hourly-weather-icon';
     hourlyWeatherCard.appendChild(hourlyWeatherIcon);
     

@@ -58,6 +58,7 @@ async function processWeatherData(city) {
     setCurrentWeather(weather, weatherData.name);
     setHourlyWeatherTemperature(weather);
     setHourlyWeatherTime(weather);
+    setHourlyWeatherIcon(weather);
     setDailyWeather(weather);
     console.log(weather);
   } catch {
@@ -101,6 +102,18 @@ function setHourlyWeatherTime(weather) {
 
     counter++;
   });
+}
+
+function setHourlyWeatherIcon(weather) {
+  let counter = 0;
+
+  const hourlyWeatherIcon = document.querySelectorAll('.hourly-weather-icon');
+  hourlyWeatherIcon.forEach((element) => {
+
+    let icon = weather.hourly[counter].weather[0].icon;
+    element.src = `http://openweathermap.org/img/wn/${icon}.png`;
+    counter++;
+  })
 }
 
 function convertUnixTime(time) {
