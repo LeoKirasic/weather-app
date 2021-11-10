@@ -1,4 +1,4 @@
-function createDom(data) {
+function createDom() {
   const container = document.getElementById('container');
 
   const header = document.createElement('div');

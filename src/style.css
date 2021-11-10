@@ -20,6 +20,7 @@
 #current-weather-container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   margin-top: 5em;
 }
 #hourly-weather-container {
@@ -59,4 +60,10 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#search-input {
+  background-color: rgba(238, 238, 238, 0.548);
+  border-color: transparent;
+  outline: none;
+  border-radius: 5px;
 }
