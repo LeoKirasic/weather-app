@@ -62,6 +62,7 @@ async function processWeatherData(city) {
       onecallRequest.hourly,
       onecallRequest.daily
     );
+    SetBackground(weatherData);
     setCurrentWeather(weather, weatherData.name);
     setHourlyWeatherTemperature(weather);
     setHourlyWeatherTime(weather);
@@ -88,6 +89,20 @@ function setCurrentWeather(weatherTemperature, currentCity) {
     Math.round(weatherTemperature.currentTemp) + '°';
   currentWeatherContainer.appendChild(city);
   currentWeatherContainer.appendChild(currentTemperature);
+}
+
+function SetBackground(weatherData) {
+  if(weatherData.weather[0].main === 'Clouds'){
+    container.style.backgroundImage = 'linear-gradient(#797C87, #ACB7BD)';
+  } else if (weatherData.weather[0].main === 'Clear') {
+    container.style.backgroundImage = 'linear-gradient(#51A4DB, #73BAE1)';
+  } else if(weatherData.weather[0].main === 'Snow') {
+    container.style.backgroundImage = 'linear-gradient(#9598a1, #ACB7BD)';
+  } else if(weatherData.weather[0].main === 'Rain') {
+    container.style.backgroundImage = 'linear-gradient(#7497AB, #4F718A)';
+  } else {
+    container.style.backgroundImage = 'linear-gradient(#7497AB, #4F718A)';
+  }
 }
 
 searchButton.addEventListener('click', () => {
