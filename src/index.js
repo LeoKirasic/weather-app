@@ -62,7 +62,8 @@ async function processWeatherData(city) {
       onecallRequest.hourly,
       onecallRequest.daily
     );
-    SetBackground(weatherData);
+    setHeaderIcon(weatherData);
+    setBackground(weatherData);
     setCurrentWeather(weather, weatherData.name);
     setHourlyWeatherTemperature(weather);
     setHourlyWeatherTime(weather);
@@ -91,7 +92,7 @@ function setCurrentWeather(weatherTemperature, currentCity) {
   currentWeatherContainer.appendChild(currentTemperature);
 }
 
-function SetBackground(weatherData) {
+function setBackground(weatherData) {
   if(weatherData.weather[0].main === 'Clouds'){
     container.style.backgroundImage = 'linear-gradient(#797C87, #ACB7BD)';
   } else if (weatherData.weather[0].main === 'Clear') {
@@ -104,7 +105,11 @@ function SetBackground(weatherData) {
     container.style.backgroundImage = 'linear-gradient(#7497AB, #4F718A)';
   }
 }
-
+function setHeaderIcon(weatherData) {
+  const headerIcon = document.getElementById('header-icon');
+  const icon = weatherData.weather[0].icon;
+  headerIcon.src = `https://openweathermap.org/img/wn/${icon}.png`;
+}
 searchButton.addEventListener('click', () => {
   processWeatherData(searchInput.value);
 });

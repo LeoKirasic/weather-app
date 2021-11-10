@@ -3,7 +3,7 @@ function createDom(data) {
 
   const header = document.createElement('div');
   header.id = 'header';
-  const headerIcon = document.createElement('div');
+  const headerIcon = document.createElement('img');
   headerIcon.id = 'header-icon';
   headerIcon.textContent = 'X';
   const headerText = document.createElement('div');
@@ -28,10 +28,8 @@ function createDom(data) {
   currentWeatherContainer.id = 'current-weather-container';
   const city = document.createElement('div');
   city.id = 'city';
-  city.textContent = 'Ogulin';
   const currentTemperature = document.createElement('div');
   currentTemperature.id = 'current-temperature';
-  currentTemperature.textContent = '8';
   currentWeatherContainer.appendChild(city);
   currentWeatherContainer.appendChild(currentTemperature);
 

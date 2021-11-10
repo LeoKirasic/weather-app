@@ -3,6 +3,9 @@
   flex-direction: column;
   min-width: 30em;
   min-height: 100%;
+  justify-content: center;
+  text-align: center;
+  
 }
 #header {
   display: flex;
@@ -46,10 +49,14 @@ li {
 }
 .daily-weather-card {
   display: flex;
-  border: 1px solid black;
 }
 .daily-weather-item {
   display: flex;
   margin: 0em 2em 0em 2em;
   width: 2em;
+}
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
