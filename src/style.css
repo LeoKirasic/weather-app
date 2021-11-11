@@ -1,4 +1,10 @@
+@font-face {
+  font-family: 'RedHatMono';
+  src: url(./RedHatMono-VariableFont_wght.ttf);
+}
+
 #container {
+  font-family: 'RedHatMono';
   display: flex;
   flex-direction: column;
   min-width: 30em;
@@ -76,4 +82,8 @@ li {
 }
 #search-button:hover {
   background-size: 110%;
+}
+.daily-weather-humidity {
+  font-size: 0.7em;
+  padding: 5px;
 }
