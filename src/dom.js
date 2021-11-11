@@ -31,7 +31,7 @@ function createDom() {
   city.id = 'city';
 
   const currentForecast = document.createElement('div');
-  currentForecast.id = 'current-forecast'
+  currentForecast.id = 'current-forecast';
 
   const currentTemperature = document.createElement('div');
   currentTemperature.id = 'current-temperature';

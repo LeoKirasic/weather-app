@@ -22,7 +22,7 @@ async function getWeatherData(city) {
     const weatherData = await response.json();
     return weatherData;
   } catch {
-    alert('ERROR');
+    console.log('ERROR');
   }
 }
 async function getOnecallWeatherData(lat, lon) {
@@ -34,7 +34,7 @@ async function getOnecallWeatherData(lat, lon) {
     const weatherData = await response.json();
     return weatherData;
   } catch {
-    alert('ERROR');
+    console.log('ERROR');
   }
 }
 class Weather {
@@ -49,12 +49,10 @@ class Weather {
 async function processWeatherData(city) {
   try {
     const weatherData = await getWeatherData(city);
-    console.log(weatherData);
     const onecallRequest = await getOnecallWeatherData(
       weatherData.coord.lat,
       weatherData.coord.lon
     );
-    console.log(onecallRequest);
     const weather = new Weather(
       onecallRequest.current.temp,
       onecallRequest.current.humidity,
@@ -73,7 +71,6 @@ async function processWeatherData(city) {
     setDailyWeatherDay(weather);
     setDailyWeatherHumidity(weather);
     setDailyWeatherIcon(weather);
-    console.log(weather);
   } catch {
     console.log('processWeatherData Error!');
   }
@@ -85,20 +82,18 @@ function setCurrentWeather(weather, currentCity) {
   const currentForecast = document.getElementById('current-forecast');
   city.textContent = currentCity;
 
-     currentForecast.textContent = weather.weather[0].main;
-  currentTemperature.textContent =
-    Math.round(weather.main.temp) + '°';
-
+  currentForecast.textContent = weather.weather[0].main;
+  currentTemperature.textContent = Math.round(weather.main.temp) + '°';
 }
 
 function setBackground(weatherData) {
-  if(weatherData.weather[0].main === 'Clouds'){
+  if (weatherData.weather[0].main === 'Clouds') {
     document.body.style.backgroundImage = 'linear-gradient(#797C87, #ACB7BD)';
   } else if (weatherData.weather[0].main === 'Clear') {
     document.body.style.backgroundImage = 'linear-gradient(#51A4DB, #73BAE1)';
-  } else if(weatherData.weather[0].main === 'Snow') {
+  } else if (weatherData.weather[0].main === 'Snow') {
     document.body.style.backgroundImage = 'linear-gradient(#9598a1, #ACB7BD)';
-  } else if(weatherData.weather[0].main === 'Rain') {
+  } else if (weatherData.weather[0].main === 'Rain') {
     document.body.style.backgroundImage = 'linear-gradient(#7497AB, #4F718A)';
   } else {
     document.body.style.backgroundImage = 'linear-gradient(#7497AB, #4F718A)';
