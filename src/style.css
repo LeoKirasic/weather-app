@@ -17,6 +17,8 @@
   display: flex;
   justify-content: center;
   margin-top: 2em;
+  font-size: 1.7em;
+  padding-right: 1em;
 }
 #form {
   display: flex;
@@ -27,7 +29,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 5em;
+  margin-top: 2.5em;
 }
 #hourly-weather-container {
   display: flex;
