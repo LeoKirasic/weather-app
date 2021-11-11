@@ -67,3 +67,13 @@ li {
   outline: none;
   border-radius: 5px;
 }
+#search-button {
+  background: url('./search-icon.png') no-repeat;
+  background-size: 100%;
+  padding: 10px;
+  border: none; /* Prevent double borders */
+  cursor: pointer;
+}
+#search-button:hover {
+  background-size: 110%;
+}
