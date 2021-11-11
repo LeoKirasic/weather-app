@@ -26,15 +26,21 @@ function createDom() {
 
   const currentWeatherContainer = document.createElement('div');
   currentWeatherContainer.id = 'current-weather-container';
+
   const city = document.createElement('div');
   city.id = 'city';
+
+  const currentForecast = document.createElement('div');
+  currentForecast.id = 'current-forecast'
+
   const currentTemperature = document.createElement('div');
   currentTemperature.id = 'current-temperature';
+
   currentWeatherContainer.appendChild(city);
+  currentWeatherContainer.appendChild(currentForecast);
   currentWeatherContainer.appendChild(currentTemperature);
 
   container.appendChild(currentWeatherContainer);
-
   const hourlyWeatherContainer = document.createElement('ul');
   hourlyWeatherContainer.id = 'hourly-weather-container';
 

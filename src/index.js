@@ -64,7 +64,7 @@ async function processWeatherData(city) {
     );
     setHeaderIcon(weatherData);
     setBackground(weatherData);
-    setCurrentWeather(weather, weatherData.name);
+    setCurrentWeather(weatherData, weatherData.name);
     setHourlyWeatherTemperature(weather);
     setHourlyWeatherTime(weather);
     setHourlyWeatherIcon(weather);
@@ -79,17 +79,16 @@ async function processWeatherData(city) {
   }
 }
 
-function setCurrentWeather(weatherTemperature, currentCity) {
+function setCurrentWeather(weather, currentCity) {
   const city = document.getElementById('city');
   const currentTemperature = document.getElementById('current-temperature');
-  const currentWeatherContainer = document.getElementById(
-    'current-weather-container'
-  );
+  const currentForecast = document.getElementById('current-forecast');
   city.textContent = currentCity;
+
+     currentForecast.textContent = weather.weather[0].main;
   currentTemperature.textContent =
-    Math.round(weatherTemperature.currentTemp) + '°';
-  currentWeatherContainer.appendChild(city);
-  currentWeatherContainer.appendChild(currentTemperature);
+    Math.round(weather.main.temp) + '°';
+
 }
 
 function setBackground(weatherData) {
