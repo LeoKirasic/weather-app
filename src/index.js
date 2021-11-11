@@ -110,7 +110,9 @@ function setHeaderIcon(weatherData) {
   headerIcon.src = `https://openweathermap.org/img/wn/${icon}.png`;
 }
 searchButton.addEventListener('click', () => {
+  const form = document.getElementById('form');
   processWeatherData(searchInput.value);
+  form.reset();
 });
 
 function setHourlyWeatherTemperature(weather) {
